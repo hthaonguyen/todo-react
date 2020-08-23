@@ -4,6 +4,7 @@ class Footer extends React.Component{
 
 
    render() {
+      console.log(this.props.showClearButton)
       return(
          <div className='footer'>
             <div>{this.props.itemsLeftNumber} item left</div>

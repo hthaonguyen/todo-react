@@ -55,13 +55,10 @@ class Todo extends React.Component{
    };
 
    renderClearCompletedButton = () => {
-      let allow = false;
-      this.state.toDoList.forEach((item)=>{
-         if(item.completed === true){
-            allow = true;
-         }
+       return this.state.toDoList.some((item)=>{
+         return (item.completed === true);
       });
-      return allow ;
+
    };
 
    render() {
