@@ -29,16 +29,13 @@ class Todo extends React.Component{
    };
 
    deleteTodoItem = (idx) => {
-       let newList = [...this.state.toDoList];
-       newList = newList.filter((item, i)=> i !== idx);
+       let newList = this.state.toDoList.filter((item, i)=> i !== idx);
        this.setState({toDoList: newList});
    };
 
-   handleChangeCheckbox = (checked, idx) => {
-      debugger
+   handleCheckboxChange = (checked, idx) => {
       let newList = [...this.state.toDoList];
-      let completedItem =  {...newList[idx]};
-      completedItem.completed = checked;
+      let completedItem =  {...newList[idx], completed: checked};
       newList[idx] = completedItem;
       this.setState({toDoList: newList});
    };
@@ -94,7 +91,7 @@ class Todo extends React.Component{
                        todo={todo}
                        idx={idx}
                        onDelete={()=>this.deleteTodoItem(idx)}
-                       onStatusChange={(checked)=>this.handleChangeCheckbox(checked, idx)}
+                       onStatusChange={(checked)=>this.handleCheckboxChange(checked, idx)}
                        //event on change
                     />
                   )
