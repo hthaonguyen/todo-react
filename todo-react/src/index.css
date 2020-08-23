@@ -40,3 +40,19 @@ code {
 .todo-item:hover .icon-delete{
   display: block;
 }
+.footer {
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #222222;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+  align-items: center;
+  padding: 0 24px;
+  justify-content: space-around;
+}
+.clear-item{
+  text-decoration: line-through;
+}
+.active{
+  border: 3px solid palevioletred;
+}
