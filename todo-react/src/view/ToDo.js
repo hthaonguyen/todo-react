@@ -34,21 +34,22 @@ class Todo extends React.Component{
        this.setState({toDoList: newList});
    };
 
-   handleChangeCheckbox = (e, idx) => {
+   handleChangeCheckbox = (checked, idx) => {
+      debugger
       let newList = [...this.state.toDoList];
-      newList[idx].completed = e.target.checked;
+      let completedItem =  {...newList[idx]};
+      completedItem.completed = checked;
+      newList[idx] = completedItem;
       this.setState({toDoList: newList});
    };
 
    calculateItemsLeft = () => {
-      let newList = [...this.state.toDoList];
-      let itemsLeft = newList.filter((item, idx)=> item.completed === false);
+      let itemsLeft = this.state.toDoList.filter((item, idx)=> !item.completed);
       return itemsLeft.length;
    };
 
    clearCompleted = () => {
-      let newList = [...this.state.toDoList];
-      newList = newList.filter((item)=>item.completed === false);
+      let newList = this.state.toDoList.filter((item)=> !item.completed);
       this.setState({toDoList: newList});
    };
 
@@ -56,7 +57,7 @@ class Todo extends React.Component{
       this.setState({filterStatus: status});
    };
 
-   renderClearCompleted = () => {
+   renderClearCompletedButton = () => {
       let allow = false;
       this.state.toDoList.forEach((item)=>{
          if(item.completed === true){
@@ -92,8 +93,8 @@ class Todo extends React.Component{
                     <ToDoItem
                        todo={todo}
                        idx={idx}
-                       onDelete={this.deleteTodoItem}
-                       onStatusChange={this.handleChangeCheckbox}
+                       onDelete={()=>this.deleteTodoItem(idx)}
+                       onStatusChange={(checked)=>this.handleChangeCheckbox(checked, idx)}
                        //event on change
                     />
                   )
@@ -103,10 +104,10 @@ class Todo extends React.Component{
                toDoList.length > 0 &&
                   <Footer
                      filterStatus={filterStatus}
-                     renderClearCompleted={this.renderClearCompleted()}
+                     showClearButton={this.renderClearCompletedButton()}
                      itemsLeftNumber = {this.calculateItemsLeft()}
-                     clearCompleted = {this.clearCompleted}
-                     handleFilter={this.handleFilter}
+                     onClearChange = {this.clearCompleted}
+                     onFilterChange={this.handleFilter}
                   />
             }
          </div>

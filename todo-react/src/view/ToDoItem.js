@@ -1,20 +1,20 @@
 import React from 'react';
 
 class ToDoItem extends React.Component{
-   onStatusChange = () => {
-
-   }
+   onStatusChange = (e) => {
+      this.props.onStatusChange(e.target.checked, this.props.idx)
+   };
    render() {
       return(
          <div className='todo-item'>
             <input className='mr-3' type='checkbox'
                    checked={this.props.todo.completed}
-                   onChange={(e)=>this.props.onStatusChange(e, this.props.idx)}
+                   onChange={this.onStatusChange}
             />
-            <div className={this.props.todo.completed && 'clear-item'}>
+            <div className={this.props.todo.completed && 'item-deleted'}>
             {this.props.todo.value}
             </div>
-            <div className='icon-delete' onClick={()=>this.props.onDelete(this.props.idx)}>X</div>
+            <div className='icon-delete' onClick={()=>this.props.onDelete()}>X</div>
          </div>
       )
    }

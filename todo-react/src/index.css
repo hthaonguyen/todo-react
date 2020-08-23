@@ -50,7 +50,7 @@ code {
   padding: 0 24px;
   justify-content: space-around;
 }
-.clear-item{
+.item-deleted{
   text-decoration: line-through;
 }
 .active{

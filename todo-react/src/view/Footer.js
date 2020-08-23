@@ -10,24 +10,24 @@ class Footer extends React.Component{
             <div>
                <span
                   className={this.props.filterStatus === 'all' ?  'active' : null}
-                  onClick={()=>this.props.handleFilter('all')}
+                  onClick={()=>this.props.onFilterChange('all')}
                >
                   All
                </span>
                <span
-                  onClick={()=>this.props.handleFilter('active')}
+                  onClick={()=>this.props.onFilterChange('active')}
                   className={`pl-3 pr-3 ${this.props.filterStatus === 'active' ?  'active' : ''}`}
                >
                   Active
                </span>
                <span
                   className={this.props.filterStatus === 'completed' ?  'active' : null}
-                  onClick={()=>this.props.handleFilter('completed')}
+                  onClick={()=>this.props.onFilterChange('completed')}
                >Completed
                </span>
             </div>
-            {  this.props.renderClearCompleted &&
-               <div onClick={() => this.props.clearCompleted()}>Clear Completed</div>
+            {  this.props.showClearButton &&
+               <div onClick={() => this.props.onClearChange()}>Clear Completed</div>
             }
          </div>
       )
